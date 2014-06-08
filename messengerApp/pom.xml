@@ -16,6 +16,7 @@
 		<spring.version>3.2.7.RELEASE</spring.version>
 		<junit.version>4.11</junit.version>
 		<slf4j.version>1.6.0</slf4j.version>
+		<h2.version>1.3.176</h2.version>
 	</properties>
 
 	<repositories>
@@ -81,19 +82,6 @@
 				<version>1.0.2</version>
 			</dependency>
 
-			<!-- hibernate dependencies -->
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-core</artifactId>
-				<version>4.3.2.Final</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-entitymanager</artifactId>
-				<version>4.3.2.Final</version>
-			</dependency>
-
 			<!-- Loggin -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -117,6 +105,12 @@
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
 				<version>1.2.15</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
 			</dependency>
 
 
