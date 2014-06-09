@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:neo4j="http://www.springframework.org/schema/data/neo4j"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/data/neo4j
+	http://www.springframework.org/schema/data/neo4j/spring-neo4j.xsd">
+
+	<bean id="graphDatabaseFactory" class="my.messenger.test.dao.graph.db.Neo4JDBFactory" />
+	
+	<bean id="graphDatabaseService" factory-bean="graphDatabaseFactory" factory-method="newEmbeddedDatabase">
+		<constructor-arg value="data/graph.db"/>
+	</bean>
+	
+	<bean id="neo4jTemplate" class="org.springframework.data.neo4j.support.Neo4jTemplate">
+		<constructor-arg name="graphDatabaseService" ref="graphDatabaseService" />
+	</bean>
+	
+	<bean id="neo4jTransactionManager" class="org.springframework.data.neo4j.config.JtaTransactionManagerFactoryBean">
+		<constructor-arg ref="graphDatabaseService" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="neo4jTransactionManager" mode="aspectj" />
+	
+	<!-- Reflection and Annotation-based metadata is collected about persistent 
+		entities in the Neo4jMappingContext, which provides it to any part of the library. -->
+	<bean id="neo4jMappingContext" class="org.springframework.data.neo4j.support.mapping.Neo4jMappingContext" />
+
+	<bean class="org.springframework.data.neo4j.support.Neo4jExceptionTranslator" />	
+</beans>
