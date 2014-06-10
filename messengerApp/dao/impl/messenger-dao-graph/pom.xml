@@ -36,6 +36,13 @@
 			<artifactId>messenger-dao-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 
 		<!-- Dependencies for spring data -->
 		<dependency>

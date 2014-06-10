@@ -19,7 +19,8 @@ import org.springframework.data.neo4j.support.index.IndexType;
 
 public class Neo4JDBFactory extends GraphDatabaseFactory {
 
-	private final String FULL_TEXT_INDEXES = "people,movie,actor";
+//	private final String FULL_TEXT_INDEXES = "people,movie,actor";
+	private final String FULL_TEXT_INDEXES = "";
 	private final String NODE_KEYS_INDEXABLE = "name,email";
 
 	public Neo4JDBFactory() {
@@ -30,7 +31,7 @@ public class Neo4JDBFactory extends GraphDatabaseFactory {
 	public GraphDatabaseService newEmbeddedDatabase(String path) {
 		GraphDatabaseBuilder dbBuilder = newEmbeddedDatabaseBuilder(path);
 		GraphDatabaseService service = dbBuilder.newGraphDatabase();
-		cratesAndAddFulltextIndexes((GraphDatabaseAPI) service, FULL_TEXT_INDEXES);
+//		cratesAndAddFulltextIndexes((GraphDatabaseAPI) service, FULL_TEXT_INDEXES);
 
 		return service;
 	}
